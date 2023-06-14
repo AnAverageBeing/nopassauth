@@ -28,7 +28,7 @@ type ErrorResponse struct {
 
 type SuccessResponse struct {
 	Message string `json:"message"`
-	Token   string `json:"token"`
+	Token   []byte `json:"token"`
 }
 
 func main() {
