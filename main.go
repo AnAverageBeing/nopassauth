@@ -72,7 +72,8 @@ func main() {
 		}
 
 		// Register the user
-		if err := authEngine.RegisterUser(req.Username, req.PublicKey); err != nil {
+		token, err := authEngine.RegisterUser(req.Username, req.PublicKey)
+		if err != nil {
 			response := ErrorResponse{Error: err.Error()}
 			log.Printf("Failed to register user '%s': %v", req.Username, err)
 			jsonResponse(w, http.StatusInternalServerError, response)
@@ -82,7 +83,10 @@ func main() {
 		log.Printf("User '%s' registered successfully", req.Username)
 
 		// Return success response
-		response := SuccessResponse{Message: "User registered successfully"}
+		response := SuccessResponse{
+			Message: "User registered successfully",
+			Token:   token,
+		}
 		jsonResponse(w, http.StatusOK, response)
 	})
 
