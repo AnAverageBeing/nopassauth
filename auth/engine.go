@@ -42,7 +42,7 @@ func (ae *AuthEngine) RegisterUser(username string, publicKey string) ([]byte, e
 	}
 
 	// Encrypt the token with the user's public key
-	encryptedToken, err := EncryptWithPublicKey([]byte(tokenString), user.GetPublicKey())
+	encryptedToken, err := EncryptWithPublicKey([]byte(tokenString), *user.GetPublicKey())
 	if err != nil {
 		return nil, err
 	}
@@ -69,7 +69,7 @@ func (ae *AuthEngine) LoginUser(username string) ([]byte, error) {
 	}
 
 	// Encrypt the token with the user's public key
-	encryptedToken, err := EncryptWithPublicKey([]byte(tokenString), user.GetPublicKey())
+	encryptedToken, err := EncryptWithPublicKey([]byte(tokenString), *user.GetPublicKey())
 	if err != nil {
 		return nil, err
 	}

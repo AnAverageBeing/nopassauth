@@ -16,8 +16,8 @@ type User struct {
 	publicKey string
 }
 
-func (u *User) GetUsername() string {
-	return u.username
+func (u *User) GetUsername() *string {
+	return &u.username
 }
 
 func (u *User) SetUsername(newName string) error {
@@ -29,8 +29,8 @@ func (u *User) SetUsername(newName string) error {
 	return nil
 }
 
-func (u *User) GetPublicKey() string {
-	return u.publicKey
+func (u *User) GetPublicKey() *string {
+	return &u.publicKey
 }
 
 func (u *User) SetPublicKey(newKey string) error {

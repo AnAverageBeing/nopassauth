@@ -34,7 +34,7 @@ func NewSQLiteDB(dbPath string) (*SQLiteDB, error) {
 
 func (sdb *SQLiteDB) SaveUser(user *auth.User) error {
 	// Check if the username already exists
-	_, err := sdb.GetUserByUsername(user.GetUsername())
+	_, err := sdb.GetUserByUsername(*user.GetUsername())
 	if err == nil {
 		return errors.New("username already exists")
 	}
